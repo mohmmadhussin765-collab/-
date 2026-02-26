@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وثيقتي - رفع وثيقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* إعدادات عامة */
+        :root {
+            --bg-color: #f8f7f2; /* لون الخلفية العام */
+            --header-bg: #2b4f43; /* لون البانر الأخضر الغامق */
+            --card-bg: #ffffff;
+            --input-bg: #f4f2ea; /* لون خلفية حقول الإدخال */
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --primary-green: #345c50;
+            --accent-gold: #c6a65c;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            box-sizing: border-box;
+        }
+
+        /* شريط التنقل (نفس الصفحة السابقة) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background-color: var(--bg-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-green);
+        }
+
+        .logo .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-green);
+        }
+
+        /* البانر العلوي (الأخضر) */
+        .page-banner {
+            background-color: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            /* إضافة نمط خفيف للخلفية ليعطي نفس إحساس الصورة */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .page-banner h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .page-banner h1 img {
+            width: 40px;
+        }
+
+        .page-banner p {
+            font-size: 16px;
+            color: #d1e0db;
+            margin: 0;
+        }
+
+        /* حاوية المحتوى الرئيسي */
+        .upload-container {
+            max-width: 800px;
+            margin: -30px auto 50px auto; /* لرفع البطاقات قليلاً فوق البانر إذا أردت، أو تركها تحته */
+            margin-top: 40px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* تصميم البطاقات العامة */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        /* قسم بيانات الواجد */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+
+        .card-header i {
+            color: #a3b8b0;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .form-group input {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--input-bg);
+            border: 1px solid transparent;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-green);
+        }
+
+        /* منطقة السحب والإفلات */
+        .drop-zone-card {
+            background-color: transparent; /* الخلفية شفافة لأن الحدود متقطعة على لون الخلفية العام */
+            border: 2px dashed #d0d0d0;
+            border-radius: 12px;
+            padding: 50px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .drop-zone-card:hover {
+            border-color: var(--primary-green);
+            background-color: rgba(255,255,255,0.4);
+        }
+
+        .upload-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f0f5;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+        }
+
+        .upload-icon i {
+            font-size: 28px;
+            color: #b0b0c0;
+        }
+
+        .drop-zone-text h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .drop-zone-text p {
+            margin: 0 0 20px 0;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* الشارات (JPG, PNG, إلخ) */
+        .file-types {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .file-badge {
+            background-color: #eef0eb;
+            color: var(--primary-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+            }
+            header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span class="dot"></span> وثيقتي
+        </div>
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#" class="active">رفع وثيقة</a>
+            <a href="#">البحث</a>
+            <a href="#">التواصل</a>
+        </nav>
+    </header>
+
+    <div class="page-banner">
+        <h1>
+            رفع وثيقة مُعثور عليها <span style="font-size: 30px;">🗂️</span>
+        </h1>
+        <p>سيتولى الذكاء الاصطناعي تصنيف الوثيقة وحماية البيانات الحساسة تلقائياً</p>
+    </div>
+
+    <main class="upload-container">
+        
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-regular fa-id-card"></i> بيانات الواجد
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>اسمك</label>
+                    <input type="text" placeholder="محمد أحمد">
+                </div>
+                <div class="form-group">
+                    <label>طريقة التواصل</label>
+                    <input type="text" placeholder="رقم الهاتف أو البريد">
+                </div>
+            </div>
+        </div>
+
+        <div class="drop-zone-card">
+            <div class="upload-icon">
+                <i class="fa-regular fa-file-lines"></i>
+            </div>
+            <div class="drop-zone-text">
+                <h3>اسحب الوثيقة هنا أو انقر للاختيار</h3>
+                <p>صور الوثائق والمستندات الرسمية</p>
+            </div>
+            <div class="file-types">
+                <span class="file-badge">JPG</span>
+                <span class="file-badge">PNG</span>
+                <span class="file-badge">PDF</span>
+                <span class="file-badge">WEBP</span>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
