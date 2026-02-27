@@ -332,6 +332,50 @@
         </div>
 
     </main>
+<script>
+        const fileInput = document.getElementById('fileInput');
+        const dropZone = document.getElementById('dropZone');
+        const uploadText = document.getElementById('uploadText');
+        const uploadIcon = document.getElementById('uploadIcon');
+        const resultArea = document.getElementById('resultArea');
+        const docTypeDisplay = document.getElementById('docTypeDisplay');
+        const processedImage = document.getElementById('processedImage');
 
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // تغيير شكل الواجهة لإظهار حالة التحميل
+            uploadIcon.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            uploadText.innerHTML = '<h3>جاري المعالجة بالذكاء الاصطناعي...</h3><p>يرجى الانتظار لحين قراءة النصوص وتضليل البيانات</p>';
+
+            // تجهيز الملف للإرسال للسيرفر
+            const formData = new FormData();
+            formData.append('document', file);
+
+            // إرسال الصورة إلى سيرفر البايثون
+            fetch('http://127.0.0.1:5000/upload-id', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // إرجاع شكل منطقة الرفع لحالتها الطبيعية
+                uploadIcon.innerHTML = '<i class="fa-regular fa-file-lines"></i>';
+                uploadText.innerHTML = '<h3>انقر هنا لاختيار وثيقة أخرى</h3>';
+                
+                // عرض النتيجة التي رجعت من الذكاء الاصطناعي
+                resultArea.style.display = 'block';
+                docTypeDisplay.innerText = "نوع الوثيقة المكتشف: " + data.doc_type;
+                processedImage.src = data.processed_image;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("حدث خطأ في الاتصال بالسيرفر. تأكد من تشغيل ملف app.py");
+                uploadIcon.innerHTML = '<i class="fa-regular fa-file-lines"></i>';
+                uploadText.innerHTML = '<h3>انقر هنا لاختيار صورة الوثيقة</h3>';
+            });
+        });
+    </script>
 </body>
 </html>
