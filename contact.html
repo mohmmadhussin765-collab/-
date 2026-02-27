@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وثيقتي - التواصل مع الواجد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* إعدادات عامة */
+        :root {
+            --bg-color: #f8f7f2;
+            --header-bg: #2b4f43;
+            --card-bg: #ffffff;
+            --input-bg: #f4f2ea;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --primary-green: #345c50;
+            --hover-green: #254239;
+            --accent-gold: #c6a65c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            box-sizing: border-box;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* شريط التنقل */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background-color: var(--bg-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-green);
+        }
+
+        .logo .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-green);
+        }
+
+        /* البانر العلوي */
+        .page-banner {
+            background-color: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 60px 20px 80px 20px; /* مساحة إضافية بالأسفل لتداخل البطاقة */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center;
+        }
+
+        .page-banner h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .page-banner p {
+            font-size: 15px;
+            color: #d1e0db;
+            margin: 0;
+        }
+
+        /* حاوية المحادثة */
+        .chat-wrapper {
+            max-width: 650px;
+            width: 100%;
+            margin: -50px auto 50px auto; /* لرفع البطاقة فوق البانر */
+            padding: 0 20px;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        .chat-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* رأس المحادثة (بيانات الواجد) */
+        .chat-header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #7c5ea8, #5a4180);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .user-info h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .user-info p {
+            margin: 0;
+            font-size: 12px;
+            color: #b8ccce;
+        }
+
+        .doc-badge {
+            align-self: flex-start;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 3px;
+        }
+
+        /* ملاحظة الأمان */
+        .chat-notice {
+            background-color: #f0f4f2;
+            color: var(--primary-green);
+            text-align: center;
+            padding: 12px;
+            margin: 15px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px dashed #c2d1cc;
+        }
+
+        /* منطقة الرسائل */
+        .chat-history {
+            background-color: var(--input-bg);
+            padding: 20px;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 12px 0 12px 12px; /* زوايا دائرية ما عدا الزاوية العلوية اليمنى */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            align-self: flex-start; /* لضبط الرسالة على اليمين */
+        }
+
+        .message p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .message .time {
+            display: block;
+            font-size: 11px;
+            color: #999;
+            margin-top: 8px;
+            text-align: left;
+        }
+
+        /* حقل الإدخال والإرسال */
+        .chat-input-area {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            background-color: var(--card-bg);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .chat-input {
+            flex-grow: 1;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--input-bg);
+            border: 1px solid transparent;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #dcded8;
+            background-color: #fff;
+        }
+
+        .btn-send {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-send:hover {
+            background-color: var(--hover-green);
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .chat-wrapper {
+                margin-top: -30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span class="dot"></span> وثيقتي
+        </div>
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#">رفع وثيقة</a>
+            <a href="#">البحث</a>
+            <a href="#" class="active">التواصل</a>
+        </nav>
+    </header>
+
+    <div class="page-banner">
+        <h1>التواصل مع الواجد 💬</h1>
+        <p>تواصل بشكل آمن مع من عثر على وثيقتك</p>
+    </div>
+
+    <main class="chat-wrapper">
+        <div class="chat-card">
+            
+            <div class="chat-header">
+                <div class="avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h3>محمد الزهراني</h3>
+                    <p>عثر على وثيقتك في المنطقة الشرقية</p>
+                    <span class="doc-badge"><i class="fa-regular fa-id-card"></i> بطاقة هوية وطنية</span>
+                </div>
+            </div>
+
+            <div class="chat-notice">
+                ملاحظة: محادثتك مع الواجد خاصة وآمنة. لا يتم مشاركة بياناتك الشخصية تلقائياً.
+            </div>
+
+            <div class="chat-history">
+                <div class="message">
+                    <p>مرحباً! لقد عثرت على وثيقة تحمل اسمك. هل يمكنك إثبات ملكيتها؟</p>
+                    <span class="time">10:45 ص</span>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" placeholder="اكتب رسالتك...">
+                <button class="btn-send">
+                    إرسال <i class="fa-regular fa-paper-plane"></i>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
