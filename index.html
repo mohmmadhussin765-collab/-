@@ -40,13 +40,21 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--primary-green);
-        }
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-green);
+    text-decoration: none !important; /* أضفنا !important هنا لإجبار المتصفح على إخفاء الخط */
+    transition: opacity 0.3s ease;
+}
+
+/* تأثير بسيط عند تمرير الماوس فوق الشعار */
+.logo:hover {
+    opacity: 0.8;
+    text-decoration: none !important; /* وللتأكيد عند مرور الماوس أيضاً */
+}
 
         .logo .dot {
             width: 8px;
