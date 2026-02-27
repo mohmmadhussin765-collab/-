@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وثيقتي - البحث عن وثيقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* إعدادات عامة */
+        :root {
+            --bg-color: #f8f7f2; /* لون الخلفية العام */
+            --header-bg: #2b4f43; /* لون البانر الأخضر الغامق */
+            --card-bg: #ffffff;
+            --input-bg: #f4f2ea; /* لون خلفية حقول الإدخال */
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --primary-green: #345c50;
+            --hover-green: #254239;
+            --accent-gold: #c6a65c;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            box-sizing: border-box;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* شريط التنقل */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background-color: var(--bg-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-green);
+        }
+
+        .logo .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-green);
+        }
+
+        /* البانر العلوي (الأخضر) مع تأثير النقش */
+        .page-banner {
+            background-color: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            /* نقش خفيف يشبه الزائد (+) كما في الصورة */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center;
+        }
+
+        .page-banner h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .page-banner p {
+            font-size: 16px;
+            color: #d1e0db;
+            margin: 0;
+        }
+
+        /* حاوية البحث */
+        .search-container {
+            max-width: 650px;
+            width: 100%;
+            margin: -35px auto 50px auto; /* رفع البطاقة لتتداخل مع البانر قليلاً */
+            padding: 0 20px;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        /* بطاقة البحث البيضاء */
+        .search-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--input-bg);
+            border: 1px solid transparent;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-input:focus {
+            border-color: #dcded8;
+            background-color: #fff;
+        }
+
+        .btn-search {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0 35px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-search i {
+            color: #72b6f2; /* لون الأيقونة الأزرق الفاتح كما في الصورة */
+            font-size: 14px;
+        }
+
+        .btn-search:hover {
+            background-color: var(--hover-green);
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .input-row {
+                flex-direction: column;
+            }
+            .btn-search {
+                padding: 14px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span class="dot"></span> وثيقتي
+        </div>
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#">رفع وثيقة</a>
+            <a href="#" class="active">البحث</a>
+            <a href="#">التواصل</a>
+        </nav>
+    </header>
+
+    <div class="page-banner">
+        <h1>
+            البحث عن وثيقتي <span style="font-size: 28px;">🔍</span>
+        </h1>
+        <p>ابحث باسمك الثلاثي للعثور على وثيقتك المفقودة</p>
+    </div>
+
+    <main class="search-container">
+        <div class="search-card">
+            <div class="form-group">
+                <label>الاسم الثلاثي كاملاً</label>
+                <div class="input-row">
+                    <input type="text" class="search-input" placeholder="مثال: محمد علي أحمد">
+                    <button class="btn-search">
+                        بحث <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
