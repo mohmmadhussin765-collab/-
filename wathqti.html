@@ -300,7 +300,22 @@
             
         </div>
 
-        <div class="drop-zone-card">
+        <div class="drop-zone-card" id="dropZone" onclick="document.getElementById('fileInput').click();">
+            <input type="file" id="fileInput" style="display: none;" accept="image/*">
+            <div class="upload-icon" id="uploadIcon">
+                <i class="fa-regular fa-file-lines"></i>
+            </div>
+            <div class="drop-zone-text" id="uploadText">
+                <h3>انقر هنا لاختيار صورة الوثيقة</h3>
+                <p>سيبدأ الذكاء الاصطناعي بمعالجتها فوراً</p>
+            </div>
+        </div>
+
+        <div id="resultArea" style="display: none; margin-top: 20px; text-align: center; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+            <h3 style="color: var(--primary-green);"><i class="fa-solid fa-robot"></i> تم تحليل الوثيقة وتضليلها بنجاح</h3>
+            <p id="docTypeDisplay" style="font-weight: bold; font-size: 18px; margin-bottom: 15px;"></p>
+            <img id="processedImage" src="" alt="الوثيقة المضللة" style="max-width: 100%; border-radius: 8px; border: 2px solid var(--primary-green);">
+        </div>
             <div class="upload-icon">
                 <i class="fa-regular fa-file-lines"></i>
             </div>
