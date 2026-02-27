@@ -42,14 +42,22 @@
             background-color: var(--bg-color);
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--primary-green);
-        }
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-green);
+    text-decoration: none !important; /* أضفنا !important هنا لإجبار المتصفح على إخفاء الخط */
+    transition: opacity 0.3s ease;
+}
+
+/* تأثير بسيط عند تمرير الماوس فوق الشعار */
+.logo:hover {
+    opacity: 0.8;
+    text-decoration: none !important; /* وللتأكيد عند مرور الماوس أيضاً */
+}
 
         .logo .dot {
             width: 8px;
@@ -287,9 +295,9 @@
 <body>
 
     <header>
-        <div class="logo">
-            <span class="dot"></span> وثيقتي
-        </div>
+        <a href="index.html" class="logo">
+    <span class="dot"></span> وثيقتي
+</a>
         <nav>
             <a href="index.html">الرئيسية</a>
             <a href="wathqti.html">رفع وثيقة</a>
