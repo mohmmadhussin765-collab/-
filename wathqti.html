@@ -318,18 +318,25 @@
         </div>
             <div class="upload-icon">
                 <i class="fa-regular fa-file-lines"></i>
-            </div>
-            <div class="drop-zone-text">
-                <h3>اسحب الوثيقة هنا أو انقر للاختيار</h3>
-                <p>صور الوثائق والمستندات الرسمية</p>
-            </div>
-            <div class="file-types">
-                <span class="file-badge">JPG</span>
-                <span class="file-badge">PNG</span>
-                <span class="file-badge">PDF</span>
-                <span class="file-badge">WEBP</span>
-            </div>
+           <div class="drop-zone-card" id="dropZone" onclick="document.getElementById('fileInput').click();">
+    <input type="file" id="fileInput" style="display: none;" accept="image/*">
+    
+    <div class="upload-content">
+        <div class="upload-icon" id="uploadIcon">
+            <i class="fa-regular fa-file-image"></i>
         </div>
+        <div class="drop-zone-text" id="uploadText">
+            <h3>انقر هنا لاختيار صورة الوثيقة</h3>
+            <p>سيبدأ الذكاء الاصطناعي بمعالجتها فوراً</p>
+        </div>
+        
+        <div class="supported-formats">
+            <span>JPG</span>
+            <span>PNG</span>
+            <span>WEBP</span>
+        </div>
+    </div>
+</div>
 
     </main>
 <script>
