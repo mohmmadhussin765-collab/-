@@ -323,14 +323,26 @@
                 <h3>اسحب الوثيقة هنا أو انقر للاختيار</h3>
                 <p>صور الوثائق والمستندات الرسمية</p>
             </div>
-            <div class="file-types">
-                <span class="file-badge">JPG</span>
-                <span class="file-badge">PNG</span>
-                <span class="file-badge">PDF</span>
-                <span class="file-badge">WEBP</span>
-            </div>
+            <div class="drop-zone-card" id="dropZone" onclick="document.getElementById('fileInput').click();">
+    <input type="file" id="fileInput" style="display: none;" accept="image/*">
+    
+    <div class="upload-content">
+        <div class="upload-icon" id="uploadIcon" style="font-size: 50px; color: #2d5a27; margin-bottom: 15px;">
+            <i class="fa-regular fa-file-image"></i>
         </div>
-
+        <div class="drop-zone-text" id="uploadText">
+            <h3 style="margin-bottom: 10px;">انقر هنا لاختيار صورة الوثيقة</h3>
+            <p style="color: #666;">سيبدأ الذكاء الاصطناعي بمعالجتها فوراً</p>
+        </div>
+        
+        <div class="supported-formats">
+            <span>JPG</span>
+            <span>PNG</span>
+            <span>PDF</span>
+            <span>WEBP</span>
+        </div>
+    </div>
+</div>
     </main>
 <script>
         const fileInput = document.getElementById('fileInput');
