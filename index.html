@@ -1,173 +1,22 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وثيقتي - Wathiqati</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* إعدادات عامة */
-        :root {
-            --bg-color: #f8f7f2; /* لون الخلفية السكري */
-            --text-dark: #1a1a1a;
-            --text-gray: #555;
-            --primary-green: #345c50; /* الأخضر الداكن للأزرار */
-            --hover-green: #254239;
-            --accent-gold: #c6a65c; /* النقطة الذهبية */
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            box-sizing: border-box;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* تنسيق شريط التنقل (Header) */
-        header {
+        /* الصق كود المربع هنا */
+        .navbar-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 12px 30px;
+            background-color: #fcfdfc; 
+            border: 1px solid #e0eadd;
+            border-radius: 50px; 
+            box-shadow: 0 4px 15px rgba(45, 90, 39, 0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 80px;
+            direction: rtl; /* لضمان الترتيب من اليمين لليسار */
         }
-
-        .logo {
-    font-size: 24px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: var(--primary-green);
-    text-decoration: none !important; /* أضفنا !important هنا لإجبار المتصفح على إخفاء الخط */
-    transition: opacity 0.3s ease;
-}
-
-/* تأثير بسيط عند تمرير الماوس فوق الشعار */
-.logo:hover {
-    opacity: 0.8;
-    text-decoration: none !important; /* وللتأكيد عند مرور الماوس أيضاً */
-}
-
-        .logo .dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-gold);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-weight: 600;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary-green);
-        }
-
-        /* تنسيق القسم الرئيسي (Hero Section) */
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        /* شارة الذكاء الاصطناعي */
-        .ai-badge {
-            background-color: #e8eae3;
-            color: var(--primary-green);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid #dcded8;
-        }
-
-        .ai-badge i {
-            color: #8a6be8; /* لون أيقونة الروبوت */
-        }
-
-        /* العناوين */
-        h1 {
-            font-size: 64px;
-            font-weight: 800;
-            margin: 0 0 20px 0;
-            color: var(--text-dark);
-            letter-spacing: -1px;
-        }
-
-        p.subtitle {
-            font-size: 18px;
-            color: var(--text-gray);
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        /* الأزرار */
-        .buttons-container {
-            display: flex;
-            gap: 15px;
-        }
-
-        button {
-            font-family: 'Cairo', sans-serif;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-green);
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--hover-green);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-dark);
-            border: 1px solid #ccc;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(0,0,0,0.05);
-        }
-
+        /* وبقية تنسيقات الروابط والبراند التي أعطيتك إياها */
     </style>
 </head>
 <body>
