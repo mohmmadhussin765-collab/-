@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* إعدادات عامة ومكتبة الألوان الخاصة بك */
+        /* إعدادات عامة */
         :root {
             --bg-color: #f8f7f2; /* لون الخلفية السكري */
             --text-dark: #1a1a1a;
@@ -31,56 +31,57 @@
             overflow-x: hidden;
         }
 
-        /* --- تنسيق المستطيل المحيط بشريط العناوين --- */
-        .custom-navbar {
-            background-color: #ffffff; /* لون المستطيل أبيض ناصع */
-            border: 1px solid #e8e8e8;
-            border-radius: 16px; /* زوايا دائرية أنيقة */
-            padding: 15px 40px;
-            margin: 25px auto;
-            max-width: 85%; /* عرض المستطيل */
+        /* تنسيق شريط التنقل (Header) */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); /* ظل خفيف يعطي بروزاً */
-            direction: rtl;
+            padding: 20px 80px;
         }
 
-        /* تنسيق الشعار (وثيقتي) */
-        .brand-logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary-green);
+        .logo {
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-green);
+    text-decoration: none !important; /* أضفنا !important هنا لإجبار المتصفح على إخفاء الخط */
+    transition: opacity 0.3s ease;
+}
+
+/* تأثير بسيط عند تمرير الماوس فوق الشعار */
+.logo:hover {
+    opacity: 0.8;
+    text-decoration: none !important; /* وللتأكيد عند مرور الماوس أيضاً */
+}
+
+        .logo .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            gap: 30px;
         }
 
-        .brand-dot {
-            color: var(--accent-gold);
-        }
-
-        /* تنسيق الروابط */
-        .nav-links {
-            display: flex;
-            gap: 35px;
-        }
-
-        .nav-links a {
+        nav a {
             text-decoration: none;
             color: var(--text-gray);
-            font-size: 17px;
-            font-weight: 700;
+            font-weight: 600;
+            font-size: 16px;
             transition: color 0.3s ease;
         }
 
-        /* لون الرابط عند مرور الماوس */
-        .nav-links a:hover,
-        .nav-links a.active {
+        nav a:hover, nav a.active {
             color: var(--primary-green);
         }
 
-        /* --- تنسيق القسم الرئيسي (Hero Section) --- */
+        /* تنسيق القسم الرئيسي (Hero Section) */
         .hero {
             flex: 1;
             display: flex;
@@ -128,7 +129,7 @@
             max-width: 600px;
         }
 
-        /* --- الأزرار --- */
+        /* الأزرار */
         .buttons-container {
             display: flex;
             gap: 15px;
@@ -155,39 +156,35 @@
 
         .btn-primary:hover {
             background-color: var(--hover-green);
-            transform: translateY(-2px); /* حركة بسيطة للأعلى عند مرور الماوس */
         }
 
         .btn-secondary {
             background-color: transparent;
             color: var(--text-dark);
-            border: 2px solid var(--primary-green); /* تم التعديل لتتناسب مع لون الثيم */
+            border: 1px solid #ccc;
         }
 
         .btn-secondary:hover {
-            background-color: rgba(52, 92, 80, 0.05); /* ظل أخضر خفيف عند مرور الماوس */
-            transform: translateY(-2px);
+            background-color: rgba(0,0,0,0.05);
         }
 
     </style>
 </head>
 <body>
 
-    <header class="custom-navbar">
-        <div class="brand-logo">
-            <span class="brand-dot">•</span>
-            وثيقتي
-        </div>
-
-        <nav class="nav-links">
-            <a href="index.html" class="active">الرئيسية</a>
+    <header>
+        <a href="index.html" class="logo">
+    <span class="dot"></span> وثيقتي
+</a>
+        <nav>
+            <a href="#" class="active">الرئيسية</a>
             <a href="wathqti.html">رفع وثيقة</a>
             <a href="search.html">البحث</a>
             <a href="contact.html">التواصل</a>
         </nav>
     </header>
 
-    <main class="hero">
+  <main class="hero">
         <div class="ai-badge">
             مدعوم بالذكاء الاصطناعي <i class="fa-solid fa-robot"></i>
         </div>
@@ -197,22 +194,21 @@
         <p class="subtitle">
             منصة ذكية لاسترجاع الوثائق المفقودة. نحمي خصوصيتك ونوصلك <br> بمن وجد وثيقتك.
         </p>
+<div class="buttons-container">
+    
+    <a href="wathqti.html" style="text-decoration: none;">
+        <button class="btn-primary">
+            رفع وثيقة مُعثور عليها <i class="fa-solid fa-box-archive" style="color: #a8b8e0;"></i>
+        </button>
+    </a>
 
-        <div class="buttons-container">
-            
-            <a href="wathqti.html" style="text-decoration: none;">
-                <button class="btn-primary">
-                    رفع وثيقة مُعثور عليها <i class="fa-solid fa-box-archive" style="color: #a8b8e0;"></i>
-                </button>
-            </a>
+    <a href="search.html" style="text-decoration: none;">
+        <button class="btn-secondary">
+            البحث عن وثيقتي <i class="fa-solid fa-magnifying-glass" style="color: #72b6f2;"></i>
+        </button>
+    </a>
 
-            <a href="search.html" style="text-decoration: none;">
-                <button class="btn-secondary">
-                    البحث عن وثيقتي <i class="fa-solid fa-magnifying-glass" style="color: #72b6f2;"></i>
-                </button>
-            </a>
-
-        </div>
+</div>
     </main>
 
 </body>
