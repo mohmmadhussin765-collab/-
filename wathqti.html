@@ -7,58 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-   <style>
-    /* حاوية الرفع الرئيسية */
-    .drop-zone-card {
-        border: 2px dashed #2d5a27; /* اللون الأخضر الخاص بهويتك البصرية */
-        border-radius: 15px;
-        padding: 40px;
-        text-align: center;
-        background-color: #fcfdfc;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        overflow: hidden; /* يمنع خروج المحتوى خارج المربع */
-        position: relative;
-        max-width: 600px;
-        margin: 20px auto;
-    }
-
-    .drop-zone-card:hover {
-        background-color: #f0f7f0;
-        border-color: #1e3d1a;
-    }
-
-    /* أيقونة الرفع */
-    .upload-icon {
-        font-size: 50px;
-        color: #2d5a27;
-        margin-bottom: 15px;
-    }
-
-    /* نصوص التعليمات */
-    .drop-zone-text h3 {
-        color: #333;
-        margin-bottom: 10px;
-        font-family: 'Tajawal', sans-serif;
-    }
-
-    /* الصيغ المدعومة (التي كانت تظهر بالخارج) */
-    .supported-formats {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .supported-formats span {
-        background: #e8f0e8;
-        padding: 4px 10px;
-        border-radius: 5px;
-        font-size: 12px;
-        color: #2d5a27;
-        font-weight: bold;
-    }
-</style>
+    <style>
+        /* إعدادات عامة */
+        :root {
+            --bg-color: #f8f7f2; /* لون الخلفية العام */
+            --header-bg: #2b4f43; /* لون البانر الأخضر الغامق */
+            --card-bg: #ffffff;
+            --input-bg: #f4f2ea; /* لون خلفية حقول الإدخال */
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --primary-green: #345c50;
+            --accent-gold: #c6a65c;
+            --border-color: #e0e0e0;
+        }
 
         body {
             margin: 0;
@@ -362,26 +323,14 @@
                 <h3>اسحب الوثيقة هنا أو انقر للاختيار</h3>
                 <p>صور الوثائق والمستندات الرسمية</p>
             </div>
-            <div class="drop-zone-card" id="dropZone" onclick="document.getElementById('fileInput').click();">
-    <input type="file" id="fileInput" style="display: none;" accept="image/*">
-    
-    <div class="upload-content">
-        <div class="upload-icon" id="uploadIcon" style="font-size: 50px; color: #2d5a27; margin-bottom: 15px;">
-            <i class="fa-regular fa-file-image"></i>
+            <div class="file-types">
+                <span class="file-badge">JPG</span>
+                <span class="file-badge">PNG</span>
+                <span class="file-badge">PDF</span>
+                <span class="file-badge">WEBP</span>
+            </div>
         </div>
-        <div class="drop-zone-text" id="uploadText">
-            <h3 style="margin-bottom: 10px;">انقر هنا لاختيار صورة الوثيقة</h3>
-            <p style="color: #666;">سيبدأ الذكاء الاصطناعي بمعالجتها فوراً</p>
-        </div>
-        
-        <div class="supported-formats">
-            <span>JPG</span>
-            <span>PNG</span>
-            <span>PDF</span>
-            <span>WEBP</span>
-        </div>
-    </div>
-</div>
+
     </main>
 <script>
         const fileInput = document.getElementById('fileInput');
