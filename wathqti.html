@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* إعدادات عامة */
         :root {
-            --bg-color: #f8f7f2; /* لون الخلفية العام */
-            --header-bg: #2b4f43; /* لون البانر الأخضر الغامق */
+            --bg-color: #f8f7f2;
+            --header-bg: #2b4f43;
             --card-bg: #ffffff;
-            --input-bg: #f4f2ea; /* لون خلفية حقول الإدخال */
+            --input-bg: #f4f2ea;
             --text-dark: #1a1a1a;
             --text-gray: #666;
             --primary-green: #345c50;
@@ -22,206 +21,65 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Cairo', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
             box-sizing: border-box;
         }
 
-        /* شريط التنقل */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 80px;
-            background-color: var(--bg-color);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 80px; background-color: var(--bg-color);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--primary-green);
-            text-decoration: none !important;
+            font-size: 24px; font-weight: 800; display: flex; align-items: center;
+            gap: 5px; color: var(--primary-green); text-decoration: none !important;
             transition: opacity 0.3s ease;
         }
+        .logo:hover { opacity: 0.8; }
+        .logo .dot { width: 8px; height: 8px; background-color: var(--accent-gold); border-radius: 50%; display: inline-block; }
 
-        .logo:hover {
-            opacity: 0.8;
-            text-decoration: none !important;
-        }
+        nav { display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 16px; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--primary-green); }
 
-        .logo .dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-gold);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-weight: 600;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary-green);
-        }
-
-        /* البانر العلوي */
         .page-banner {
-            background-color: var(--header-bg);
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-color: var(--header-bg); color: white; text-align: center;
+            padding: 50px 20px; background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
         }
+        .page-banner h1 { font-size: 36px; font-weight: 700; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .page-banner p { font-size: 16px; color: #d1e0db; margin: 0; }
 
-        .page-banner h1 {
-            font-size: 36px;
-            font-weight: 700;
-            margin: 0 0 10px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
+        .upload-container { max-width: 800px; margin: 40px auto 50px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 25px; }
+        .card { background-color: var(--card-bg); border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); }
+        
+        .card-header { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; margin-bottom: 25px; color: var(--text-dark); }
+        .card-header i { color: #a3b8b0; }
+        
+        .form-row { display: flex; gap: 20px; }
+        .form-group { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        .form-group label { font-weight: 600; font-size: 14px; color: var(--text-gray); }
+        .form-group input { font-family: 'Cairo', sans-serif; background-color: var(--input-bg); border: 1px solid transparent; padding: 12px 15px; border-radius: 8px; font-size: 14px; outline: none; transition: border 0.3s ease; }
+        .form-group input:focus { border-color: var(--primary-green); }
 
-        .page-banner p {
-            font-size: 16px;
-            color: #d1e0db;
-            margin: 0;
-        }
-
-        /* حاوية المحتوى الرئيسي */
-        .upload-container {
-            max-width: 800px;
-            margin: 40px auto 50px auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* تصميم البطاقات العامة */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        }
-
-        /* قسم بيانات الواجد */
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-        }
-
-        .card-header i {
-            color: #a3b8b0;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-
-        .form-group {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        .form-group input {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--input-bg);
-            border: 1px solid transparent;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            transition: border 0.3s ease;
-        }
-
-        .form-group input:focus {
-            border-color: var(--primary-green);
-        }
-
-        /* منطقة السحب والإفلات */
-        .drop-zone-card {
-            background-color: transparent;
-            border: 2px dashed #d0d0d0;
-            border-radius: 12px;
-            padding: 50px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: border-color 0.3s ease, background-color 0.3s ease;
-        }
-
-        .drop-zone-card:hover {
-            border-color: var(--primary-green);
-            background-color: rgba(255,255,255,0.4);
-        }
-
-        .upload-icon {
-            width: 60px;
-            height: 60px;
-            background-color: #f0f0f5;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px auto;
-        }
-
-        .upload-icon i {
-            font-size: 28px;
-            color: #b0b0c0;
-        }
+        .drop-zone-card { background-color: transparent; border: 2px dashed #d0d0d0; border-radius: 12px; padding: 50px 20px; text-align: center; cursor: pointer; transition: 0.3s ease; }
+        .drop-zone-card:hover { border-color: var(--primary-green); background-color: rgba(255,255,255,0.4); }
+        .upload-icon { width: 60px; height: 60px; background-color: #f0f0f5; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; }
+        .upload-icon i { font-size: 28px; color: #b0b0c0; }
 
         @media (max-width: 768px) {
-            .form-row {
-                flex-direction: column;
-            }
-            header {
-                padding: 20px;
-                flex-direction: column;
-                gap: 15px;
-            }
+            .form-row { flex-direction: column; }
+            header { padding: 20px; flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="logo">
-            <span class="dot"></span> وثيقتي
-        </a>
+        <a href="index.html" class="logo"><span class="dot"></span> وثيقتي</a>
         <nav>
             <a href="index.html">الرئيسية</a>
             <a href="wathqti.html" class="active">رفع وثيقة</a>
@@ -231,55 +89,34 @@
     </header>
 
     <div class="page-banner">
-        <h1>
-            رفع وثيقة مُعثور عليها <span style="font-size: 30px;">🗂️</span>
-        </h1>
+        <h1>رفع وثيقة مُعثور عليها <span style="font-size: 30px;">🗂️</span></h1>
         <p>سيتولى الذكاء الاصطناعي تصنيف الوثيقة وحماية البيانات الحساسة تلقائياً</p>
     </div>
 
     <main class="upload-container">
         
         <div class="card">
-            <div class="card-header">
-                <i class="fa-regular fa-id-card"></i> بيانات الواجد
-            </div>
-            
+            <div class="card-header"><i class="fa-regular fa-id-card"></i> بيانات الواجد</div>
             <div class="form-row" style="margin-bottom: 20px;">
-                <div class="form-group">
-                    <label>اسمك</label>
-                    <input type="text" placeholder="محمد أحمد">
-                </div>
-                <div class="form-group">
-                    <label>طريقة التواصل</label>
-                    <input type="text" placeholder="رقم الهاتف أو البريد">
-                </div>
+                <div class="form-group"><label>اسمك</label><input type="text" placeholder="محمد أحمد"></div>
+                <div class="form-group"><label>طريقة التواصل</label><input type="text" placeholder="رقم الهاتف أو البريد"></div>
             </div>
-
             <div class="form-row">
-                <div class="form-group">
-                    <label>مكان العثور على الوثيقة</label>
-                    <input type="text" placeholder="مثال: الحلة، جامعة المستقبل، أو شارع 40">
-                </div>
+                <div class="form-group"><label>مكان العثور على الوثيقة</label><input type="text" placeholder="مثال: الحلة، جامعة المستقبل، أو شارع 40"></div>
             </div>
         </div>
 
         <div class="drop-zone-card" id="dropZone" onclick="document.getElementById('fileInput').click();">
             <input type="file" id="fileInput" style="display: none;" accept="image/*">
-            
             <div class="upload-content">
-                <div class="upload-icon" id="uploadIcon" style="font-size: 40px; color: #2d5a27; margin-bottom: 10px;">
-                    <i class="fa-regular fa-file-image"></i>
-                </div>
-                
+                <div class="upload-icon" id="uploadIcon" style="font-size: 40px; color: #2d5a27; margin-bottom: 10px;"><i class="fa-regular fa-file-image"></i></div>
                 <div class="drop-zone-text" id="uploadText">
                     <h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار صورة الوثيقة</h3>
                     <p style="margin: 0; font-size: 14px; color: #666;">سيتم تضليل البيانات الحساسة تلقائياً</p>
                 </div>
-
                 <div class="supported-formats" style="margin-top: 15px; display: flex; gap: 5px; justify-content: center;">
                     <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">JPG</span>
                     <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">PNG</span>
-                    <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">WEBP</span>
                 </div>
             </div>
         </div>
@@ -292,11 +129,11 @@
 
             <div id="dataCard" style="display: none; background-color: var(--input-bg); border: 1px solid var(--accent-gold); border-radius: 12px; padding: 20px; margin-top: 25px; text-align: right;">
                 <h4 style="color: var(--primary-green); margin-top: 0; border-bottom: 2px solid #e2dfd5; padding-bottom: 10px;">
-                    <i class="fa-solid fa-list-check"></i> البيانات المستخرجة
+                    <i class="fa-solid fa-users-viewfinder"></i> البيانات المستخرجة من الوثيقة
                 </h4>
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
-                    <p style="margin: 0; font-size: 16px;"><strong>الاسم الظاهر:</strong> <span id="resName" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
-                    <p style="margin: 0; font-size: 16px;"><strong>تاريخ الميلاد:</strong> <span id="resDob" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
+                    <p style="margin: 0; font-size: 16px;"><strong>الاسم الكامل للوثيقة:</strong> <span id="resFullName" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
+                    <p style="margin: 0; font-size: 16px;"><strong>اسم الأم والجد (مخفي بالصورة):</strong> <span id="resMotherName" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
                 </div>
             </div>
         </div>
@@ -305,61 +142,54 @@
 
     <script>
         const fileInput = document.getElementById('fileInput');
-        const dropZone = document.getElementById('dropZone');
         const uploadText = document.getElementById('uploadText');
         const uploadIcon = document.getElementById('uploadIcon');
         
-        // المتغيرات الخاصة بمنطقة النتيجة
         const resultArea = document.getElementById('resultArea');
         const docTypeDisplay = document.getElementById('docTypeDisplay');
         const processedImage = document.getElementById('processedImage');
-        
-        // المتغيرات الخاصة بالبيانات المستخرجة
         const dataCard = document.getElementById('dataCard');
-        const resName = document.getElementById('resName');
-        const resDob = document.getElementById('resDob');
 
         fileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
 
-            // إخفاء النتيجة القديمة إذا كان يرفع صورة جديدة
             resultArea.style.display = 'none';
             dataCard.style.display = 'none';
 
-            // تغيير شكل الواجهة لإظهار حالة التحميل
             uploadIcon.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size: 40px; color: #2d5a27;"></i>';
-            uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">جاري المعالجة بالذكاء الاصطناعي...</h3><p style="margin: 0; font-size: 14px; color: #666;">يرجى الانتظار لحين قراءة النصوص وتضليل البيانات</p>';
+            uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">جاري المعالجة بالذكاء الاصطناعي...</h3>';
 
             const formData = new FormData();
             formData.append('document', file);
 
-            // إرسال الصورة إلى سيرفر البايثون
             fetch('http://127.0.0.1:5000/upload-id', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                // إرجاع شكل منطقة الرفع لحالتها الطبيعية
                 uploadIcon.innerHTML = '<i class="fa-regular fa-file-image" style="font-size: 40px; color: #2d5a27;"></i>';
-                uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار وثيقة أخرى</h3><p style="margin: 0; font-size: 14px; color: #666;">سيتم تضليل البيانات الحساسة تلقائياً</p>';
+                uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار وثيقة أخرى</h3>';
                 
-                // عرض الصورة والنوع
                 resultArea.style.display = 'block';
                 docTypeDisplay.innerText = "نوع الوثيقة المكتشف: " + data.doc_type;
                 processedImage.src = data.processed_image;
 
-                // عرض البيانات المستخرجة (الاسم وتاريخ الميلاد)
-                if(data.name || data.dob) {
-                    resName.innerText = data.name || "لم يتم التعرف عليه";
-                    resDob.innerText = data.dob || "لم يتم التعرف عليه";
+                // ربط البيانات بالـ HTML
+                if(data.names) {
+                    const fullName = `${data.names.first} ${data.names.father} ${data.names.grandpa}`.trim();
+                    const motherFullName = `${data.names.mother} ${data.names.mother_grandpa}`.trim();
+                    
+                    document.getElementById('resFullName').innerText = fullName;
+                    document.getElementById('resMotherName').innerText = motherFullName;
+                    
                     dataCard.style.display = 'block';
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert("حدث خطأ في الاتصال بالسيرفر. تأكد من تشغيل ملف app.py");
+                alert("حدث خطأ. تأكد من تشغيل ملف app.py");
                 uploadIcon.innerHTML = '<i class="fa-regular fa-file-image" style="font-size: 40px; color: #2d5a27;"></i>';
                 uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار صورة الوثيقة</h3>';
             });
