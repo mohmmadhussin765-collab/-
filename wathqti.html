@@ -30,7 +30,7 @@
             box-sizing: border-box;
         }
 
-        /* شريط التنقل (نفس الصفحة السابقة) */
+        /* شريط التنقل */
         header {
             display: flex;
             justify-content: space-between;
@@ -40,21 +40,20 @@
         }
 
         .logo {
-    font-size: 24px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: var(--primary-green);
-    text-decoration: none !important; /* أضفنا !important هنا لإجبار المتصفح على إخفاء الخط */
-    transition: opacity 0.3s ease;
-}
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-green);
+            text-decoration: none !important;
+            transition: opacity 0.3s ease;
+        }
 
-/* تأثير بسيط عند تمرير الماوس فوق الشعار */
-.logo:hover {
-    opacity: 0.8;
-    text-decoration: none !important; /* وللتأكيد عند مرور الماوس أيضاً */
-}
+        .logo:hover {
+            opacity: 0.8;
+            text-decoration: none !important;
+        }
 
         .logo .dot {
             width: 8px;
@@ -81,13 +80,12 @@
             color: var(--primary-green);
         }
 
-        /* البانر العلوي (الأخضر) */
+        /* البانر العلوي */
         .page-banner {
             background-color: var(--header-bg);
             color: white;
             text-align: center;
             padding: 50px 20px;
-            /* إضافة نمط خفيف للخلفية ليعطي نفس إحساس الصورة */
             background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
         }
@@ -102,10 +100,6 @@
             gap: 15px;
         }
 
-        .page-banner h1 img {
-            width: 40px;
-        }
-
         .page-banner p {
             font-size: 16px;
             color: #d1e0db;
@@ -115,8 +109,7 @@
         /* حاوية المحتوى الرئيسي */
         .upload-container {
             max-width: 800px;
-            margin: -30px auto 50px auto; /* لرفع البطاقات قليلاً فوق البانر إذا أردت، أو تركها تحته */
-            margin-top: 40px;
+            margin: 40px auto 50px auto;
             padding: 0 20px;
             display: flex;
             flex-direction: column;
@@ -181,7 +174,7 @@
 
         /* منطقة السحب والإفلات */
         .drop-zone-card {
-            background-color: transparent; /* الخلفية شفافة لأن الحدود متقطعة على لون الخلفية العام */
+            background-color: transparent;
             border: 2px dashed #d0d0d0;
             border-radius: 12px;
             padding: 50px 20px;
@@ -211,35 +204,6 @@
             color: #b0b0c0;
         }
 
-        .drop-zone-text h3 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .drop-zone-text p {
-            margin: 0 0 20px 0;
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        /* الشارات (JPG, PNG, إلخ) */
-        .file-types {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .file-badge {
-            background-color: #eef0eb;
-            color: var(--primary-green);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        /* استجابة للشاشات الصغيرة */
         @media (max-width: 768px) {
             .form-row {
                 flex-direction: column;
@@ -256,8 +220,8 @@
 
     <header>
         <a href="index.html" class="logo">
-    <span class="dot"></span> وثيقتي
-</a>
+            <span class="dot"></span> وثيقتي
+        </a>
         <nav>
             <a href="index.html">الرئيسية</a>
             <a href="wathqti.html" class="active">رفع وثيقة</a>
@@ -297,49 +261,76 @@
                     <input type="text" placeholder="مثال: الحلة، جامعة المستقبل، أو شارع 40">
                 </div>
             </div>
-            
         </div>
 
         <div class="drop-zone-card" id="dropZone" onclick="document.getElementById('fileInput').click();">
-    <input type="file" id="fileInput" style="display: none;" accept="image/*">
-    
-    <div class="upload-content">
-        <div class="upload-icon" id="uploadIcon" style="font-size: 40px; color: #2d5a27; margin-bottom: 10px;">
-            <i class="fa-regular fa-file-image"></i>
-        </div>
-        
-        <div class="drop-zone-text">
-            <h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار صورة الوثيقة</h3>
-            <p style="margin: 0; font-size: 14px; color: #666;">سيتم تضليل البيانات الحساسة تلقائياً</p>
+            <input type="file" id="fileInput" style="display: none;" accept="image/*">
+            
+            <div class="upload-content">
+                <div class="upload-icon" id="uploadIcon" style="font-size: 40px; color: #2d5a27; margin-bottom: 10px;">
+                    <i class="fa-regular fa-file-image"></i>
+                </div>
+                
+                <div class="drop-zone-text" id="uploadText">
+                    <h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار صورة الوثيقة</h3>
+                    <p style="margin: 0; font-size: 14px; color: #666;">سيتم تضليل البيانات الحساسة تلقائياً</p>
+                </div>
+
+                <div class="supported-formats" style="margin-top: 15px; display: flex; gap: 5px; justify-content: center;">
+                    <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">JPG</span>
+                    <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">PNG</span>
+                    <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">WEBP</span>
+                </div>
+            </div>
         </div>
 
-        <div class="supported-formats" style="margin-top: 15px; display: flex; gap: 5px; justify-content: center;">
-            <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">JPG</span>
-            <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">PNG</span>
-            <span style="background: #e8f0e8; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #2d5a27;">WEBP</span>
+        <div class="card" id="resultArea" style="display: none; text-align: center;">
+            <h3 style="color: var(--primary-green); margin-top: 0;"><i class="fa-solid fa-robot"></i> تم تحليل الوثيقة وتضليلها بنجاح</h3>
+            <p id="docTypeDisplay" style="font-weight: bold; color: var(--text-dark); margin-bottom: 20px;"></p>
+            
+            <img id="processedImage" src="" alt="الوثيقة المعالجة" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+            <div id="dataCard" style="display: none; background-color: var(--input-bg); border: 1px solid var(--accent-gold); border-radius: 12px; padding: 20px; margin-top: 25px; text-align: right;">
+                <h4 style="color: var(--primary-green); margin-top: 0; border-bottom: 2px solid #e2dfd5; padding-bottom: 10px;">
+                    <i class="fa-solid fa-list-check"></i> البيانات المستخرجة
+                </h4>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
+                    <p style="margin: 0; font-size: 16px;"><strong>الاسم الظاهر:</strong> <span id="resName" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
+                    <p style="margin: 0; font-size: 16px;"><strong>تاريخ الميلاد:</strong> <span id="resDob" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
     </main>
-<script>
+
+    <script>
         const fileInput = document.getElementById('fileInput');
         const dropZone = document.getElementById('dropZone');
         const uploadText = document.getElementById('uploadText');
         const uploadIcon = document.getElementById('uploadIcon');
+        
+        // المتغيرات الخاصة بمنطقة النتيجة
         const resultArea = document.getElementById('resultArea');
         const docTypeDisplay = document.getElementById('docTypeDisplay');
         const processedImage = document.getElementById('processedImage');
+        
+        // المتغيرات الخاصة بالبيانات المستخرجة
+        const dataCard = document.getElementById('dataCard');
+        const resName = document.getElementById('resName');
+        const resDob = document.getElementById('resDob');
 
         fileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
 
-            // تغيير شكل الواجهة لإظهار حالة التحميل
-            uploadIcon.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
-            uploadText.innerHTML = '<h3>جاري المعالجة بالذكاء الاصطناعي...</h3><p>يرجى الانتظار لحين قراءة النصوص وتضليل البيانات</p>';
+            // إخفاء النتيجة القديمة إذا كان يرفع صورة جديدة
+            resultArea.style.display = 'none';
+            dataCard.style.display = 'none';
 
-            // تجهيز الملف للإرسال للسيرفر
+            // تغيير شكل الواجهة لإظهار حالة التحميل
+            uploadIcon.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size: 40px; color: #2d5a27;"></i>';
+            uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">جاري المعالجة بالذكاء الاصطناعي...</h3><p style="margin: 0; font-size: 14px; color: #666;">يرجى الانتظار لحين قراءة النصوص وتضليل البيانات</p>';
+
             const formData = new FormData();
             formData.append('document', file);
 
@@ -351,19 +342,26 @@
             .then(response => response.json())
             .then(data => {
                 // إرجاع شكل منطقة الرفع لحالتها الطبيعية
-                uploadIcon.innerHTML = '<i class="fa-regular fa-file-lines"></i>';
-                uploadText.innerHTML = '<h3>انقر هنا لاختيار وثيقة أخرى</h3>';
+                uploadIcon.innerHTML = '<i class="fa-regular fa-file-image" style="font-size: 40px; color: #2d5a27;"></i>';
+                uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار وثيقة أخرى</h3><p style="margin: 0; font-size: 14px; color: #666;">سيتم تضليل البيانات الحساسة تلقائياً</p>';
                 
-                // عرض النتيجة التي رجعت من الذكاء الاصطناعي
+                // عرض الصورة والنوع
                 resultArea.style.display = 'block';
                 docTypeDisplay.innerText = "نوع الوثيقة المكتشف: " + data.doc_type;
                 processedImage.src = data.processed_image;
+
+                // عرض البيانات المستخرجة (الاسم وتاريخ الميلاد)
+                if(data.name || data.dob) {
+                    resName.innerText = data.name || "لم يتم التعرف عليه";
+                    resDob.innerText = data.dob || "لم يتم التعرف عليه";
+                    dataCard.style.display = 'block';
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert("حدث خطأ في الاتصال بالسيرفر. تأكد من تشغيل ملف app.py");
-                uploadIcon.innerHTML = '<i class="fa-regular fa-file-lines"></i>';
-                uploadText.innerHTML = '<h3>انقر هنا لاختيار صورة الوثيقة</h3>';
+                uploadIcon.innerHTML = '<i class="fa-regular fa-file-image" style="font-size: 40px; color: #2d5a27;"></i>';
+                uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">انقر هنا لاختيار صورة الوثيقة</h3>';
             });
         });
     </script>
