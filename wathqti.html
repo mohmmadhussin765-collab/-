@@ -132,8 +132,7 @@
                     <i class="fa-solid fa-users-viewfinder"></i> البيانات المستخرجة من الوثيقة
                 </h4>
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
-                    <p style="margin: 0; font-size: 16px;"><strong>الاسم الكامل للوثيقة:</strong> <span id="resFullName" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
-                    <p style="margin: 0; font-size: 16px;"><strong>اسم الأم والجد (مخفي بالصورة):</strong> <span id="resMotherName" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
+                    <p style="margin: 0; font-size: 16px;"><strong>الاسم الثلاثي:</strong> <span id="resFullName" style="color: var(--primary-green); font-weight: bold; margin-right: 10px;">--</span></p>
                 </div>
             </div>
         </div>
@@ -176,14 +175,9 @@
                 docTypeDisplay.innerText = "نوع الوثيقة المكتشف: " + data.doc_type;
                 processedImage.src = data.processed_image;
 
-                // ربط البيانات بالـ HTML
-                if(data.names) {
-                    const fullName = `${data.names.first} ${data.names.father} ${data.names.grandpa}`.trim();
-                    const motherFullName = `${data.names.mother} ${data.names.mother_grandpa}`.trim();
-                    
-                    document.getElementById('resFullName').innerText = fullName;
-                    document.getElementById('resMotherName').innerText = motherFullName;
-                    
+                // هنا تم إصلاح الخلل: نستقبل الاسم الثلاثي الصافي من البايثون ونظهره
+                if(data.full_name) {
+                    document.getElementById('resFullName').innerText = data.full_name;
                     dataCard.style.display = 'block';
                 }
             })
