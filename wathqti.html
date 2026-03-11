@@ -98,11 +98,11 @@
         <div class="card">
             <div class="card-header"><i class="fa-regular fa-id-card"></i> بيانات الواجد</div>
             <div class="form-row" style="margin-bottom: 20px;">
-                <div class="form-group"><label>اسمك</label><input type="text" placeholder="محمد أحمد"></div>
-                <div class="form-group"><label>طريقة التواصل</label><input type="text" placeholder="رقم الهاتف أو البريد"></div>
+                <div class="form-group"><label>اسمك</label><input type="text" id="finderNameInput" placeholder="محمد أحمد"></div>
+                <div class="form-group"><label>طريقة التواصل</label><input type="text" id="contactInfoInput" placeholder="رقم الهاتف أو البريد"></div>
             </div>
             <div class="form-row">
-                <div class="form-group"><label>مكان العثور على الوثيقة</label><input type="text" placeholder="مثال: الحلة، جامعة المستقبل، أو شارع 40"></div>
+                <div class="form-group"><label>مكان العثور على الوثيقة</label><input type="text" id="locationInput" placeholder="مثال: الحلة، جامعة المستقبل، أو شارع 40"></div>
             </div>
         </div>
 
@@ -157,10 +157,20 @@
             dataCard.style.display = 'none';
 
             uploadIcon.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size: 40px; color: #2d5a27;"></i>';
-            uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">جاري المعالجة بالذكاء الاصطناعي...</h3>';
+            uploadText.innerHTML = '<h3 style="margin: 0 0 5px 0; font-size: 18px; color: #333;">جاري المعالجة والحفظ في قاعدة البيانات...</h3>';
 
             const formData = new FormData();
             formData.append('document', file);
+            
+            // 🔴 التعديل الجوهري: سحب بيانات الواجد من الحقول النصية وإضافتها للطرد 🔴
+            // نستخدم .trim() لإزالة المسافات الفارغة، ونضع قيمة افتراضية إذا ترك المستخدم الحقل فارغاً
+            const finderName = document.getElementById('finderNameInput').value.trim() || 'فاعل خير';
+            const contactInfo = document.getElementById('contactInfoInput').value.trim() || 'غير محدد';
+            const locationFound = document.getElementById('locationInput').value.trim() || 'غير محدد';
+
+            formData.append('finderName', finderName);
+            formData.append('contactInfo', contactInfo);
+            formData.append('location', locationFound);
 
             fetch('http://127.0.0.1:5000/upload-id', {
                 method: 'POST',
@@ -175,11 +185,15 @@
                 docTypeDisplay.innerText = "نوع الوثيقة المكتشف: " + data.doc_type;
                 processedImage.src = data.processed_image;
 
-                // هنا تم إصلاح الخلل: نستقبل الاسم الثلاثي الصافي من البايثون ونظهره
                 if(data.full_name) {
                     document.getElementById('resFullName').innerText = data.full_name;
                     dataCard.style.display = 'block';
                 }
+                
+                // تنظيف الحقول لتكون جاهزة لوثيقة جديدة
+                document.getElementById('finderNameInput').value = '';
+                document.getElementById('contactInfoInput').value = '';
+                document.getElementById('locationInput').value = '';
             })
             .catch(error => {
                 console.error('Error:', error);
