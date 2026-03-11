@@ -10,10 +10,10 @@
     <style>
         /* إعدادات عامة */
         :root {
-            --bg-color: #f8f7f2; /* لون الخلفية العام */
-            --header-bg: #2b4f43; /* لون البانر الأخضر الغامق */
+            --bg-color: #f8f7f2;
+            --header-bg: #2b4f43;
             --card-bg: #ffffff;
-            --input-bg: #f4f2ea; /* لون خلفية حقول الإدخال */
+            --input-bg: #f4f2ea;
             --text-dark: #1a1a1a;
             --text-gray: #666;
             --primary-green: #345c50;
@@ -44,21 +44,20 @@
         }
 
         .logo {
-    font-size: 24px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: var(--primary-green);
-    text-decoration: none !important; /* أضفنا !important هنا لإجبار المتصفح على إخفاء الخط */
-    transition: opacity 0.3s ease;
-}
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-green);
+            text-decoration: none !important;
+            transition: opacity 0.3s ease;
+        }
 
-/* تأثير بسيط عند تمرير الماوس فوق الشعار */
-.logo:hover {
-    opacity: 0.8;
-    text-decoration: none !important; /* وللتأكيد عند مرور الماوس أيضاً */
-}
+        .logo:hover {
+            opacity: 0.8;
+            text-decoration: none !important;
+        }
 
         .logo .dot {
             width: 8px;
@@ -85,13 +84,12 @@
             color: var(--primary-green);
         }
 
-        /* البانر العلوي (الأخضر) مع تأثير النقش */
+        /* البانر العلوي (الأخضر) */
         .page-banner {
             background-color: var(--header-bg);
             color: white;
             text-align: center;
             padding: 60px 20px;
-            /* نقش خفيف يشبه الزائد (+) كما في الصورة */
             background-image: 
                 linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
@@ -119,13 +117,11 @@
         .search-container {
             max-width: 650px;
             width: 100%;
-            margin: -35px auto 50px auto; /* رفع البطاقة لتتداخل مع البانر قليلاً */
+            margin: -35px auto 30px auto;
             padding: 0 20px;
             box-sizing: border-box;
-            flex-grow: 1;
         }
 
-        /* بطاقة البحث البيضاء */
         .search-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -169,7 +165,7 @@
         }
 
         .search-input:focus {
-            border-color: #dcded8;
+            border-color: var(--accent-gold);
             background-color: #fff;
         }
 
@@ -190,12 +186,104 @@
         }
 
         .btn-search i {
-            color: #72b6f2; /* لون الأيقونة الأزرق الفاتح كما في الصورة */
+            color: var(--accent-gold); 
             font-size: 14px;
         }
 
         .btn-search:hover {
             background-color: var(--hover-green);
+        }
+
+        /* تنسيقات عرض النتائج (مضافة حديثاً لتناسب تصميمك) */
+        .results-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            box-sizing: border-box;
+        }
+
+        .result-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-gold);
+            border-bottom: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 15px 20px;
+            background-color: var(--input-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h3 {
+            margin: 0;
+            color: var(--primary-green);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .badge {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin: 8px 0;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+        
+        .card-body strong {
+            color: var(--text-dark);
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .status-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            color: var(--primary-green);
+        }
+
+        .error-msg {
+            color: #d32f2f;
+            border-color: #f8d7da;
+            background: #fff3f4;
         }
 
         /* استجابة للشاشات الصغيرة */
@@ -219,8 +307,8 @@
 
     <header>
         <a href="index.html" class="logo">
-    <span class="dot"></span> وثيقتي
-</a>
+            <span class="dot"></span> وثيقتي
+        </a>
         <nav>
             <a href="index.html">الرئيسية</a>
             <a href="wathqti.html">رفع وثيقة</a>
@@ -240,15 +328,68 @@
         <div class="search-card">
             <div class="form-group">
                 <label>الاسم الثلاثي كاملاً</label>
-                <div class="input-row">
-                    <input type="text" class="search-input" placeholder="مثال: محمد علي أحمد">
-                    <button class="btn-search">
+                <form class="input-row" onsubmit="searchDocument(event)">
+                    <input type="text" id="searchInput" class="search-input" placeholder="مثال: محمد علي أحمد" required>
+                    <button type="submit" class="btn-search">
                         بحث <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     </main>
+
+    <div id="resultsContainer" class="results-container"></div>
+
+    <script>
+        async function searchDocument(event) {
+            event.preventDefault(); // منع إعادة تحميل الصفحة
+
+            const queryName = document.getElementById('searchInput').value.trim();
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            if (!queryName) return;
+
+            // إظهار رسالة تحميل
+            resultsContainer.innerHTML = "<div class='status-msg'>جاري البحث في قاعدة البيانات... ⏳</div>";
+
+            try {
+                // استدعاء الـ API من سيرفر البايثون (يجب أن يكون ملف app.py قيد التشغيل)
+                const response = await fetch(`http://127.0.0.1:5000/search-id?name=${encodeURIComponent(queryName)}`);
+                const data = await response.json();
+
+                resultsContainer.innerHTML = ""; // تنظيف الشاشة
+
+                if (data.count === 0) {
+                    resultsContainer.innerHTML = `<div class='status-msg error-msg'>عذراً، لم يتم العثور على وثائق تطابق الاسم: "${queryName}"</div>`;
+                    return;
+                }
+
+                // رسم بطاقات النتائج
+                data.results.forEach(doc => {
+                    const cardHTML = `
+                        <div class="result-card">
+                            <div class="card-header">
+                                <h3>${doc.full_name}</h3>
+                                <span class="badge">${doc.doc_type}</span>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>👤 اسم الواجد:</strong> ${doc.finder_name}</p>
+                                <p><strong>📞 طريقة التواصل:</strong> <span dir="ltr">${doc.contact_info}</span></p>
+                                <p><strong>📍 مكان العثور:</strong> ${doc.location_found}</p>
+                                <p><strong>📅 تاريخ الرفع:</strong> <span dir="ltr">${doc.upload_date}</span></p>
+                            </div>
+                            <img src="${doc.processed_image}" alt="صورة الوثيقة" class="card-image">
+                        </div>
+                    `;
+                    resultsContainer.innerHTML += cardHTML;
+                });
+
+            } catch (error) {
+                console.error("Error:", error);
+                resultsContainer.innerHTML = "<div class='status-msg error-msg'>حدث خطأ في الاتصال بالسيرفر. يرجى التأكد من تشغيل ملف (app.py) في الخلفية.</div>";
+            }
+        }
+    </script>
 
 </body>
 </html>
