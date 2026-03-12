@@ -31,12 +31,14 @@
             flex-direction: column;
         }
 
+        /* ===== HEADER ===== */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 80px;
+            padding: 14px 80px;
             background-color: var(--bg-color);
+            border-bottom: 1px solid #ece9df;
         }
 
         .logo {
@@ -47,11 +49,15 @@
             gap: 5px;
             color: var(--primary-green);
             text-decoration: none !important;
-            transition: opacity 0.3s ease;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 7px 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
 
         .logo:hover {
-            opacity: 0.8;
+            background-color: var(--hover-green);
             text-decoration: none !important;
         }
 
@@ -65,7 +71,7 @@
 
         nav {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         nav a {
@@ -74,9 +80,9 @@
             font-weight: 600;
             font-size: 15px;
             background-color: var(--primary-green);
-            padding: 8px 18px;
+            padding: 7px 18px;
             border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.25s ease, transform 0.2s ease;
             border: 1px solid transparent;
         }
 
@@ -90,6 +96,7 @@
             border-color: var(--accent-gold);
         }
 
+        /* ===== PAGE BANNER ===== */
         .page-banner {
             background-color: var(--header-bg);
             color: white;
@@ -117,6 +124,7 @@
             margin: 0;
         }
 
+        /* ===== SEARCH ===== */
         .search-container {
             max-width: 650px;
             width: 100%;
@@ -188,6 +196,7 @@
         .btn-search i { color: var(--accent-gold); font-size: 14px; }
         .btn-search:hover { background-color: var(--hover-green); }
 
+        /* ===== RESULTS ===== */
         .results-container {
             max-width: 1000px;
             width: 100%;
@@ -267,8 +276,9 @@
             background: #fff3f4;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            header { padding: 12px 20px; flex-direction: column; gap: 12px; }
             .input-row { flex-direction: column; }
             .btn-search { padding: 14px; justify-content: center; }
         }
