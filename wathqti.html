@@ -98,15 +98,15 @@
         <div class="card">
             <div class="card-header"><i class="fa-regular fa-id-card"></i> بيانات الواجد</div>
             <div class="form-row" style="margin-bottom: 20px;">
-                <div class="form-group"><label>اسمك</label><input type="text" id="finderNameInput" placeholder="محمد أحمد"></div>
-                <div class="form-group"><label>طريقة التواصل</label><input type="text" id="contactInfoInput" placeholder="رقم الهاتف أو البريد"></div>
+                <div class="form-group"><label>اسمك <span style="color:red;">*</span></label><input type="text" id="finderNameInput" placeholder="محمد أحمد"></div>
+                <div class="form-group"><label>طريقة التواصل <span style="color:red;">*</span></label><input type="text" id="contactInfoInput" placeholder="رقم الهاتف أو البريد"></div>
             </div>
             <div class="form-row">
-                <div class="form-group"><label>مكان العثور على الوثيقة</label><input type="text" id="locationInput" placeholder="مثال: الحلة، جامعة المستقبل، أو شارع 40"></div>
+                <div class="form-group"><label>مكان العثور على الوثيقة <span style="color:red;">*</span></label><input type="text" id="locationInput" placeholder="مثال: الحلة، جامعة المستقبل، أو شارع 40"></div>
             </div>
         </div>
 
-        <div class="drop-zone-card" id="dropZone" onclick="document.getElementById('fileInput').click();">
+        <div class="drop-zone-card" id="dropZone" onclick="checkFieldsAndUpload();">
             <input type="file" id="fileInput" style="display: none;" accept="image/*">
             <div class="upload-content">
                 <div class="upload-icon" id="uploadIcon" style="font-size: 40px; color: #2d5a27; margin-bottom: 10px;"><i class="fa-regular fa-file-image"></i></div>
@@ -149,6 +149,21 @@
         const processedImage = document.getElementById('processedImage');
         const dataCard = document.getElementById('dataCard');
 
+        // 🔴 الدالة الجديدة: تتحقق من الحقول قبل فتح نافذة اختيار الصورة
+        function checkFieldsAndUpload() {
+            const finderName = document.getElementById('finderNameInput').value.trim();
+            const contactInfo = document.getElementById('contactInfoInput').value.trim();
+            const locationFound = document.getElementById('locationInput').value.trim();
+
+            if (!finderName || !contactInfo || !locationFound) {
+                alert("⚠️ تنبيه: يرجى إدخال جميع 'بيانات الواجد' (الاسم، طريقة التواصل، ومكان العثور) قبل اختيار الوثيقة ورفعها.");
+                return; // إيقاف العملية وعدم فتح نافذة اختيار الصورة
+            }
+            
+            // إذا كانت الحقول ممتلئة، نفتح نافذة اختيار الصورة
+            fileInput.click();
+        }
+
         fileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -162,11 +177,10 @@
             const formData = new FormData();
             formData.append('document', file);
             
-            // 🔴 التعديل الجوهري: سحب بيانات الواجد من الحقول النصية وإضافتها للطرد 🔴
-            // نستخدم .trim() لإزالة المسافات الفارغة، ونضع قيمة افتراضية إذا ترك المستخدم الحقل فارغاً
-            const finderName = document.getElementById('finderNameInput').value.trim() || 'فاعل خير';
-            const contactInfo = document.getElementById('contactInfoInput').value.trim() || 'غير محدد';
-            const locationFound = document.getElementById('locationInput').value.trim() || 'غير محدد';
+            // سحب البيانات من الحقول (نحن متأكدون أنها غير فارغة الآن بسبب الدالة السابقة)
+            const finderName = document.getElementById('finderNameInput').value.trim();
+            const contactInfo = document.getElementById('contactInfoInput').value.trim();
+            const locationFound = document.getElementById('locationInput').value.trim();
 
             formData.append('finderName', finderName);
             formData.append('contactInfo', contactInfo);
@@ -194,6 +208,7 @@
                 document.getElementById('finderNameInput').value = '';
                 document.getElementById('contactInfoInput').value = '';
                 document.getElementById('locationInput').value = '';
+                fileInput.value = ''; // تصفير الملف المختار
             })
             .catch(error => {
                 console.error('Error:', error);
