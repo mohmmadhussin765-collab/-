@@ -23,7 +23,7 @@ logging.getLogger("ppocr").setLevel(logging.ERROR)
 from paddleocr import PaddleOCR
 
 # 🔴 إعداد مفتاح جوجل
-client = genai.Client(api_key="ضع_مفتاحك_هنا")
+client = genai.Client(api_key="")
 
 app = Flask(__name__)
 CORS(app)
