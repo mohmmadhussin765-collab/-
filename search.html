@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* إعدادات عامة */
         :root {
             --bg-color: #f8f7f2;
             --header-bg: #2b4f43;
@@ -20,6 +19,7 @@
             --hover-green: #254239;
             --accent-gold: #c6a65c;
             --border-color: #e0e0e0;
+            --nav-bg: #2e5347;
         }
 
         body {
@@ -34,13 +34,15 @@
             flex-direction: column;
         }
 
-        /* شريط التنقل */
+        /* ===== NAVBAR ===== */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 80px;
-            background-color: var(--bg-color);
+            padding: 0 80px;
+            background-color: var(--nav-bg);
+            height: 64px;
+            box-shadow: 0 2px 12px rgba(52, 92, 80, 0.25);
         }
 
         .logo {
@@ -49,13 +51,13 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            color: var(--primary-green);
+            color: #ffffff;
             text-decoration: none !important;
             transition: opacity 0.3s ease;
         }
 
         .logo:hover {
-            opacity: 0.8;
+            opacity: 0.85;
             text-decoration: none !important;
         }
 
@@ -69,22 +71,30 @@
 
         nav {
             display: flex;
-            gap: 30px;
+            gap: 6px;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-gray);
+            color: rgba(255, 255, 255, 0.80);
             font-weight: 600;
-            font-size: 16px;
-            transition: color 0.3s ease;
+            font-size: 15px;
+            padding: 7px 16px;
+            border-radius: 7px;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
-        nav a:hover, nav a.active {
-            color: var(--primary-green);
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
         }
 
-        /* البانر العلوي (الأخضر) */
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+        }
+
+        /* ===== PAGE BANNER ===== */
         .page-banner {
             background-color: var(--header-bg);
             color: white;
@@ -113,7 +123,7 @@
             margin: 0;
         }
 
-        /* حاوية البحث */
+        /* ===== SEARCH ===== */
         .search-container {
             max-width: 650px;
             width: 100%;
@@ -186,7 +196,7 @@
         }
 
         .btn-search i {
-            color: var(--accent-gold); 
+            color: var(--accent-gold);
             font-size: 14px;
         }
 
@@ -194,7 +204,7 @@
             background-color: var(--hover-green);
         }
 
-        /* تنسيقات عرض النتائج (مضافة حديثاً لتناسب تصميمك) */
+        /* ===== RESULTS ===== */
         .results-container {
             max-width: 1000px;
             width: 100%;
@@ -256,7 +266,7 @@
             font-size: 14px;
             color: var(--text-gray);
         }
-        
+
         .card-body strong {
             color: var(--text-dark);
         }
@@ -286,12 +296,15 @@
             background: #fff3f4;
         }
 
-        /* استجابة للشاشات الصغيرة */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             header {
-                padding: 20px;
+                padding: 0 20px;
+                height: auto;
+                padding-top: 12px;
+                padding-bottom: 12px;
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
             }
             .input-row {
                 flex-direction: column;
@@ -342,29 +355,26 @@
 
     <script>
         async function searchDocument(event) {
-            event.preventDefault(); // منع إعادة تحميل الصفحة
+            event.preventDefault();
 
             const queryName = document.getElementById('searchInput').value.trim();
             const resultsContainer = document.getElementById('resultsContainer');
             
             if (!queryName) return;
 
-            // إظهار رسالة تحميل
             resultsContainer.innerHTML = "<div class='status-msg'>جاري البحث في قاعدة البيانات... ⏳</div>";
 
             try {
-                // استدعاء الـ API من سيرفر البايثون (يجب أن يكون ملف app.py قيد التشغيل)
                 const response = await fetch(`http://127.0.0.1:5000/search-id?name=${encodeURIComponent(queryName)}`);
                 const data = await response.json();
 
-                resultsContainer.innerHTML = ""; // تنظيف الشاشة
+                resultsContainer.innerHTML = "";
 
                 if (data.count === 0) {
                     resultsContainer.innerHTML = `<div class='status-msg error-msg'>عذراً، لم يتم العثور على وثائق تطابق الاسم: "${queryName}"</div>`;
                     return;
                 }
 
-                // رسم بطاقات النتائج
                 data.results.forEach(doc => {
                     const cardHTML = `
                         <div class="result-card">
